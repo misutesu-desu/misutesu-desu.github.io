@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>misutesu</title>
+<script>
+  // Runs before first paint so a saved theme does not flash the system one.
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved) document.documentElement.dataset.theme = saved;
+  } catch {}
+</script>
+<style>
+  :root {
+    color-scheme: light dark;
+    --content: light-dark(#ffffff, #191919);
+    --nav: light-dark(#f9f9f9, #1f1f1f);
+    --hover: light-dark(#f0f0f0, #2d2d2d);
+    --pressed: light-dark(#dedede, #424242);
+    --line: light-dark(#e5e5e5, #3a3a3a);
+    --button: light-dark(#fbfbfb, #2d2d2d);
+    --button-stroke: light-dark(#dedede, #3a3a3a);
+    --text: light-dark(#1a1a1a, #f0f0f0);
+    --weak: light-dark(#606060, #c8c8c8);
+    --link: light-dark(#005fb8, #60cdff);
+  }
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--content);
+    color: var(--text);
+    font: 14px/1.5 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 16px;
+  }
+  header { margin-bottom: 40px; }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  h1 { margin: 0; font-size: 20px; font-weight: 600; }
+  h2, h3, p { font-size: inherit; font-weight: 400; margin: 0; }
+  .intro { margin-top: 8px; color: var(--weak); }
+  h2 { margin-bottom: 12px; font-size: 12px; color: var(--weak); }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    color: var(--link);
+  }
+  button {
+    min-height: 24px;
+    padding: 2px 8px;
+    background: var(--button);
+    color: var(--text);
+    border: 1px solid var(--button-stroke);
+    border-radius: 5px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  button:hover { background: var(--hover); }
+  button:active { background: var(--pressed); }
+  :focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .projects li {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background: var(--nav);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+  }
+  .projects p { flex: 1; margin-top: 4px; color: var(--weak); }
+  .links { display: flex; gap: 16px; margin-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="title">
+      <h1>misutesu</h1>
+      <button id="theme" type="button" hidden></button>
+    </div>
+    <p class="intro">Short intro goes here.</p>
+    <a href="https://github.com/misutesu-desu">github.com/misutesu-desu</a>
+  </header>
+
+  <section>
+    <h2>Projects</h2>
+    <ul class="projects">
+      <li>
+        <h3>guren</h3>
+        <p>A fast photo viewer for Windows. Zoom and pan stay put when you switch photos.</p>
+        <div class="links">
+          <a href="https://misutesu.com/guren/">Live site</a>
+          <a href="https://github.com/misutesu-desu/guren">GitHub</a>
+        </div>
+      </li>
+      <li>
+        <h3>hien</h3>
+        <p>A fast notepad for Windows with find, replace and insert word</p>
+        <div class="links">
+          <a href="https://misutesu.com/hien/">Live site</a>
+          <a href="https://github.com/misutesu-desu/hien">GitHub</a>
+        </div>
+      </li>
+      <li>
+        <h3>nietono</h3>
+        <p>Uninstaller for Windows that removes what programs leave behind, with a restorable backup of everything it deletes.</p>
+        <div class="links">
+          <a href="https://misutesu.com/nietono/">Live site</a>
+          <a href="https://github.com/misutesu-desu/nietono">GitHub</a>
+        </div>
+      </li>
+      <li>
+        <h3>swift-explorer</h3>
+        <p>Fast file manager that looks and works like the Windows 11 File Explorer. Single exe, written in Rust. Windows and Linux.</p>
+        <div class="links">
+          <a href="https://misutesu.com/swift-explorer/">Live site</a>
+          <a href="https://github.com/misutesu-desu/swift-explorer">GitHub</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
+<script>
+  const root = document.documentElement;
+  const button = document.querySelector("#theme");
+  const system = matchMedia("(prefers-color-scheme: dark)");
+
+  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : system.matches;
+  const label = () => { button.textContent = isDark() ? "Light theme" : "Dark theme"; };
+
+  button.addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch {}
+    label();
+  });
+  system.addEventListener("change", label);
+
+  label();
+  button.hidden = false;
+</script>
+</body>
+</html>
