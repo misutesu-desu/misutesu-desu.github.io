@@ -75,6 +75,11 @@ h2 { font-size: clamp(2.5rem, 5vw, 4.25rem); }
 .steps article { border-top: 2px solid #c19c99; padding: 16px 0 0; }
 h3 { font-size: 1.15rem; line-height: 1.25; margin-bottom: 9px; }
 .steps p, .setup p { color: var(--muted); }
+.screenshots { padding-block: clamp(40px, 6vw, 76px); border-top: 1px solid var(--line); }
+.screenshot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 26px; }
+.screenshot-grid a { display: block; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+.screenshot-grid img { display: block; width: 100%; height: auto; }
+.screenshot-grid figcaption { color: var(--muted); padding: 8px 0 0; font-size: 1rem; }
 .setup { background: #f1eae6; border-block: 1px solid var(--line); }
 .setup-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; padding-block: 48px; align-items: center; }
 .setup h2 { font-size: clamp(2.15rem, 4.25vw, 3.85rem); margin-bottom: 17px; }
@@ -94,12 +99,13 @@ h3 { font-size: 1.15rem; line-height: 1.25; margin-bottom: 9px; }
   .hero { grid-template-columns: 1fr; gap: 32px; }
   h1 { max-width: 12ch; }
   .intro { margin-top: 17px; }
-  .setup-layout { grid-template-columns: 1fr; gap: 25px; }
+  .setup-layout, .screenshot-grid { grid-template-columns: 1fr; gap: 25px; }
 }
 @media (max-width: 520px) {
   .header { min-height: 65px; }
   .identity { gap: 7px; font-size: 1.04rem; }
   nav { gap: 10px; }
+  nav a[href="#workflow"] { display: none; }
   nav a, .locale, figcaption, .switches button { font-size: .875rem; }
   .brand-icon { width: 27px; height: 27px; }
   .dot { margin-left: -6px; }

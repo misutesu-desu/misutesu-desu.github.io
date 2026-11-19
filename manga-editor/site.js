@@ -4,20 +4,20 @@ const dialogue = document.getElementById("dialogue");
 const copy = document.getElementById("copy");
 const status = document.getElementById("copy-status");
 const lines = { ja: "これが最後の電車だ。", tr: "Bu son tren.", en: "This is the last train." };
-const elements = [...document.querySelectorAll("[data-en], [data-alt-en], [data-label-en]")].map(element => {
-  const attribute = element.dataset.altEn ? "alt" : element.dataset.labelEn ? "aria-label" : null;
+const elements = [...document.querySelectorAll("[data-tr], [data-alt-tr], [data-label-tr]")].map(element => {
+  const attribute = element.dataset.altTr ? "alt" : element.dataset.labelTr ? "aria-label" : null;
   return [
     element,
     attribute,
     attribute ? element.getAttribute(attribute) : element.textContent,
-    element.dataset.altEn ?? element.dataset.labelEn ?? element.dataset.en,
+    element.dataset.altTr ?? element.dataset.labelTr ?? element.dataset.tr,
   ];
 });
-let english = new URLSearchParams(location.search).get("lang") === "en";
+let english = new URLSearchParams(location.search).get("lang") !== "tr";
 
 function localize() {
   document.documentElement.lang = english ? "en" : "tr";
-  for (const [element, attribute, tr, en] of elements) {
+  for (const [element, attribute, en, tr] of elements) {
     const label = english ? en : tr;
     if (attribute) element.setAttribute(attribute, label);
     else element.textContent = label;
@@ -31,8 +31,8 @@ localize();
 ui.addEventListener("click", () => {
   english = !english;
   const url = new URL(location.href);
-  if (english) url.searchParams.set("lang", "en");
-  else url.searchParams.delete("lang");
+  if (english) url.searchParams.delete("lang");
+  else url.searchParams.set("lang", "tr");
   history.replaceState(null, "", url);
   localize();
 });
