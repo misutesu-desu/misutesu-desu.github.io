@@ -27,15 +27,14 @@ button { font: inherit; cursor: pointer; }
 .wrap { width: min(1264px, calc(100% - 112px)); margin-inline: auto; }
 .masthead, .header-background { background: var(--night); color: var(--paper); }
 .header {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
   min-height: 76px; border-bottom: 1px solid #3d3534;
 }
-.identity { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-size: 1.2rem; font-weight: 760; letter-spacing: -.045em; }
+.identity { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-size: 1.2rem; font-weight: 760; letter-spacing: -.045em; white-space: nowrap; }
 .brand-icon {
   display: inline-grid; place-items: center; color: var(--night); background: var(--paper);
   width: 32px; height: 32px; border-radius: 3px; font: 700 1.06rem/1 "Yu Gothic", sans-serif;
 }
-.dot { color: var(--button); margin-left: -8px; }
 nav, .actions, .switches { display: flex; align-items: center; }
 nav { gap: 25px; }
 nav a { text-decoration: none; color: #d9d1ce; font-size: .94rem; }
@@ -46,7 +45,6 @@ nav a:hover { color: white; text-decoration: underline; }
   display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.36fr);
   align-items: center; gap: clamp(28px, 4.4vw, 70px); padding-block: clamp(50px, 7.2vw, 104px) clamp(48px, 6.2vw, 89px);
 }
-.project { color: var(--button); font-size: .88rem; letter-spacing: .15em; font-weight: 750; margin-bottom: 14px; }
 h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.07em; line-height: .99; font-weight: 700; }
 h1 { font-size: clamp(3rem, 5.45vw, 5.8rem); }
 .intro { color: #d8cdca; font-size: clamp(1rem, 1.35vw, 1.2rem); max-width: 31rem; margin-top: 24px; }
@@ -92,7 +90,7 @@ h3 { font-size: 1.15rem; line-height: 1.25; margin-bottom: 9px; }
 .terminal pre { margin: 0; padding: 17px; overflow: auto; font-size: .91rem; line-height: 1.65; }
 #copy-status { color: #f5babe; font-size: .88rem; margin: 0 17px 12px; }
 #copy-status:empty { display: none; }
-.footer { display: flex; align-items: center; justify-content: space-between; min-height: 60px; color: var(--muted); font-size: .91rem; }
+.footer { display: flex; align-items: center; min-height: 60px; color: var(--muted); font-size: .91rem; }
 @media (max-width: 1060px) { .wrap { width: calc(100% - 70px); } .hero { gap: 30px; } }
 @media (max-width: 820px) {
   .wrap { width: calc(100% - 40px); }
@@ -108,7 +106,6 @@ h3 { font-size: 1.15rem; line-height: 1.25; margin-bottom: 9px; }
   nav a[href="#workflow"] { display: none; }
   nav a, .locale, figcaption, .switches button { font-size: .875rem; }
   .brand-icon { width: 27px; height: 27px; }
-  .dot { margin-left: -6px; }
   figcaption { flex-wrap: wrap; padding: 7px 8px; }
   .switches { gap: 0; }
   .switches button { padding-inline: 5px; }
