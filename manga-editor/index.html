@@ -6,20 +6,26 @@
   <meta name="theme-color" content="#161414">
   <meta name="description" content="Translate Japanese manga with local OCR and cleanup, editable lettering, and full-resolution ZIP export on Windows.">
   <title>Manga Editor</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Manga Editor">
+  <meta property="og:description" content="Translate and letter Japanese manga on Windows.">
+  <meta property="og:url" content="https://misutesu.com/manga-editor/">
+  <meta property="og:image" content="https://misutesu.com/manga-editor/assets/editor-translation.webp">
   <link rel="canonical" href="https://misutesu.com/manga-editor/">
   <link rel="stylesheet" href="./site.css">
   <script src="./site.js" defer></script>
 </head>
 <body id="top">
+  <a class="skip-link" href="#main-content" data-tr="İçeriğe geç">Skip to content</a>
   <div class="header-background">
     <header class="wrap header">
       <a class="identity" href="#top">
         <span class="brand-icon" aria-hidden="true">文</span>Manga Editor
       </a>
-      <nav aria-label="Site">
+      <nav aria-label="Site" data-label-tr="Site menüsü">
         <a href="#workflow" data-tr="İş akışı">Workflow</a>
-        <a href="#screenshots" data-tr="Ekran görüntüleri">Screenshots</a>
-        <a href="#setup" data-tr="Kurulum">Setup</a>
+        <a href="#screenshots" data-tr="Editör">Editor</a>
+        <a href="#setup">Windows</a>
         <button type="button" class="locale" id="locale" aria-label="Switch site to Turkish">TR</button>
       </nav>
     </header>
@@ -29,27 +35,17 @@
     <div class="masthead">
       <section class="wrap hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <h1 id="hero-title" data-tr="Çizim kalsın. Diyalog çevrilsin.">Translate the dialogue. Keep the artwork.</h1>
-          <p class="intro" data-tr="Japonca manga için Windows’ta çalışan bir çeviri editörü. Bölüm klasörünü aç, çeviri servisini seç ve her sayfada dizgiyi kontrol et.">A Windows workspace for translating Japanese manga. Open a chapter folder, choose a translation provider, and check the lettering on each page.</p>
+          <h1 id="hero-title" data-tr="Japonca mangayı çevir ve diz.">Translate and letter Japanese manga.</h1>
+          <p class="intro" data-tr="Bölüm klasörünü aç, konuşma balonlarını temizle ve dizgiyi kontrol et. Onayladığın sayfaları tam çözünürlükte tek bir ZIP olarak dışa aktar.">Open a chapter folder, clean the speech bubbles, and check the lettering. Export your approved pages as full-resolution PNGs in one ZIP.</p>
           <div class="actions">
-            <a class="button primary" href="#setup" data-tr="Kuruluma geç">Get started</a>
-            <a class="button secondary" href="https://github.com/misutesu-desu/manga-editor">GitHub</a>
+            <a class="button primary" href="#screenshots" data-tr="Editörü incele">Explore the editor</a>
           </div>
         </div>
-
-        <figure class="demo">
-          <div class="panel" id="demo-panel">
-            <img src="./assets/night-platform.webp" width="1536" height="1024" alt="Black-and-white manga panel of a traveler looking at a train on a rainy platform." data-alt-tr="Yağmurlu bir istasyonda trene bakan yolcunun siyah beyaz manga paneli.">
-            <p class="dialogue" lang="en" id="dialogue" aria-live="polite">This is the last train.</p>
-          </div>
-          <figcaption>
-            <span data-tr="Örnek panel">Illustrated example</span>
-            <div class="switches" id="demo-switch" role="group" aria-label="Panel language" data-label-tr="Panel dili">
-              <button type="button" data-lang="ja" aria-pressed="false" data-tr="Japonca">Japanese</button>
-              <button type="button" data-lang="tr" aria-pressed="false" data-tr="Türkçe">Turkish</button>
-              <button type="button" data-lang="en" aria-pressed="true">English</button>
-            </div>
-          </figcaption>
+        <figure class="hero-preview">
+          <a href="./assets/editor-translation.webp">
+            <img src="./assets/editor-translation.webp" width="1440" height="900" fetchpriority="high" alt="Manga Editor with a translated panel, Japanese OCR text, and editable lettering controls" data-alt-tr="Manga Editor’da çevrilmiş panel, Japonca OCR metni ve dizgi ayarları">
+          </a>
+          <figcaption data-tr="Manga Editor’ın Windows arayüzü">Manga Editor on Windows</figcaption>
         </figure>
       </section>
     </div>
@@ -74,37 +70,47 @@
 
   <section class="screenshots" id="screenshots" aria-labelledby="screenshots-title">
     <div class="wrap">
-      <h2 id="screenshots-title" data-tr="Editörün içinden">Inside the editor</h2>
+      <h2 id="screenshots-title" data-tr="Balonları temizle, dizgiyi kontrol et">Clean the bubble and check the lettering</h2>
       <div class="screenshot-grid">
-        <figure>
-          <a href="./assets/editor-translation.webp">
-            <img src="./assets/editor-translation.webp" width="1440" height="900" loading="lazy" alt="Manga Editor showing the translated station panel, editable dialogue, and lettering controls" data-alt-tr="Manga Editor’da çevrilmiş istasyon paneli, düzenlenebilir diyalog ve dizgi ayarları">
-          </a>
-          <figcaption data-tr="Çeviriyi, yazı tipini ve metin kutusunu düzenle.">Edit the translation, typeface, and text box.</figcaption>
-        </figure>
-        <figure>
+        <figure class="mask-preview">
           <a href="./assets/editor-mask.webp">
-            <img src="./assets/editor-mask.webp" width="1440" height="900" loading="lazy" alt="Manga Editor showing the selected speech bubble in Mask view, with brush controls" data-alt-tr="Manga Editor’ın Maske görünümünde seçili konuşma balonu ve fırça ayarları">
+            <img src="./assets/editor-mask.webp" width="1440" height="900" loading="lazy" alt="Manga Editor showing a speech bubble in Mask view, with brush controls" data-alt-tr="Manga Editor’ın Maske görünümünde konuşma balonu ve fırça ayarları">
           </a>
-          <figcaption data-tr="Temizlenecek alanı sayfa üzerinde fırçayla düzelt.">Refine the cleanup mask directly on the page.</figcaption>
+          <figcaption data-tr="Temizlenecek alanı sayfa üzerinde fırçayla düzelt.">Refine the cleanup mask with the brush.</figcaption>
+        </figure>
+        <figure class="demo">
+          <div class="panel">
+            <img src="./assets/night-platform.webp" width="1536" height="1024" loading="lazy" alt="Black-and-white manga panel of a traveler looking at a train on a rainy platform." data-alt-tr="Yağmurlu bir istasyonda trene bakan yolcunun siyah beyaz manga paneli.">
+            <p class="dialogue" lang="en" id="dialogue" aria-live="polite">This is the last train.</p>
+          </div>
+          <figcaption>
+            <span data-tr="Örnek panel">Sample dialogue</span>
+            <div class="switches" id="demo-switch" role="group" aria-label="Panel language" data-label-tr="Panel dili">
+              <button type="button" data-lang="ja" aria-pressed="false" data-tr="Japonca">Japanese</button>
+              <button type="button" data-lang="tr" aria-pressed="false" data-tr="Türkçe">Turkish</button>
+              <button type="button" data-lang="en" aria-pressed="true">English</button>
+            </div>
+          </figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <section class="setup" id="setup" aria-labelledby="setup-title">
-    <div class="wrap setup-layout">
+  <section class="availability" id="setup" aria-labelledby="availability-title">
+    <div class="wrap availability-layout">
       <div>
-        <h2 id="setup-title" data-tr="Windows’ta kurulum">Set up on Windows</h2>
-        <p data-tr="Rust, MSVC C++ derleme araçları, Python 3.11 ve uv gerekir. Kaynak klasöründe aşağıdaki komutları çalıştır. Kurulum, OCR ve temizleme modellerini indirir.">Install Rust, the MSVC C++ build tools, Python 3.11 and uv. Run these commands in the source folder. Setup downloads the OCR and cleanup models.</p>
-        <a class="repo-link" href="https://github.com/misutesu-desu/manga-editor" data-tr="GitHub deposunu aç">Open the GitHub repository</a>
-        <p class="repo-note" data-tr="GitHub deposuna erişim şu an izin gerektiriyor.">GitHub repository access is currently restricted.</p>
+        <h2 id="availability-title" data-tr="Windows sürümü">Windows release</h2>
+        <p data-tr="Herkese açık Windows sürümü henüz yayınlanmadı.">The public Windows download is pending release.</p>
       </div>
-      <div class="terminal">
-        <div class="terminal-bar"><span>PowerShell</span><button type="button" id="copy" data-tr="Kopyala">Copy</button></div>
-        <pre><code id="commands">powershell -ExecutionPolicy Bypass -File .\setup.ps1
-cargo run --locked</code></pre>
-        <p id="copy-status" role="status"></p>
+      <div class="faq">
+        <details>
+          <summary data-tr="Sayfalarım nerede işleniyor?">Where are my pages processed?</summary>
+          <p data-tr="Metin tanıma ve temizleme bilgisayarında yapılır. Harici çeviri servisine algılanan metin, servis destekliyorsa da eklediğin seri bağlamı gönderilir.">OCR and cleanup run on your computer. An external translation service receives the detected text and, if supported, the series context you enter.</p>
+        </details>
+        <details>
+          <summary data-tr="Çeviri servisi kullanmak zorunda mıyım?">Do I need a translation service?</summary>
+          <p data-tr="Çeviriyi editörde elle yazabilir veya desteklenen bir sağlayıcı seçebilirsin. Sağlayıcıya göre API anahtarı veya yerel model gerekebilir.">You can enter translations manually or connect a supported provider. Depending on the provider, you may need an API key or a local model.</p>
+        </details>
       </div>
     </div>
   </section>

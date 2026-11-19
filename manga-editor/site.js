@@ -1,8 +1,6 @@
 const ui = document.getElementById("locale");
 const group = document.getElementById("demo-switch");
 const dialogue = document.getElementById("dialogue");
-const copy = document.getElementById("copy");
-const status = document.getElementById("copy-status");
 const lines = { ja: "これが最後の電車だ。", tr: "Bu son tren.", en: "This is the last train." };
 const elements = [...document.querySelectorAll("[data-tr], [data-alt-tr], [data-label-tr]")].map(element => {
   const attribute = element.dataset.altTr ? "alt" : element.dataset.labelTr ? "aria-label" : null;
@@ -15,6 +13,16 @@ const elements = [...document.querySelectorAll("[data-tr], [data-alt-tr], [data-
 });
 let english = new URLSearchParams(location.search).get("lang") !== "tr";
 
+let panelLanguage;
+
+function showDialogue(language) {
+  for (const item of group.querySelectorAll("button")) {
+    item.setAttribute("aria-pressed", String(item.dataset.lang === language));
+  }
+  dialogue.lang = language;
+  dialogue.textContent = lines[language];
+}
+
 function localize() {
   document.documentElement.lang = english ? "en" : "tr";
   for (const [element, attribute, en, tr] of elements) {
@@ -24,7 +32,7 @@ function localize() {
   }
   ui.textContent = english ? "TR" : "EN";
   ui.setAttribute("aria-label", english ? "Switch site to Turkish" : "Siteyi İngilizceye çevir");
-  status.textContent = "";
+  showDialogue(panelLanguage ?? (english ? "en" : "tr"));
 }
 localize();
 
@@ -40,23 +48,6 @@ ui.addEventListener("click", () => {
 group.addEventListener("click", event => {
   const button = event.target.closest("button[data-lang]");
   if (!button) return;
-  for (const item of group.querySelectorAll("button")) {
-    item.setAttribute("aria-pressed", String(item === button));
-  }
-  dialogue.lang = button.dataset.lang;
-  dialogue.textContent = lines[dialogue.lang];
-});
-
-copy.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(document.getElementById("commands").textContent);
-    status.textContent = english ? "Commands copied." : "Komutlar kopyalandı.";
-  } catch {
-    const range = document.createRange();
-    range.selectNodeContents(document.getElementById("commands"));
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    status.textContent = english ? "Press Ctrl+C to copy the selected commands." : "Seçili komutları kopyalamak için Ctrl+C’ye bas.";
-  }
+  panelLanguage = button.dataset.lang;
+  showDialogue(panelLanguage);
 });
